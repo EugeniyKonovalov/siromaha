@@ -2,32 +2,107 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* ==== clerk class override ===== */
+
+.cl-cardBox {
+  background-color: #475569;
+}
+.cl-cardBox input {
+  background-color:#cbd5e1 ;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+.cl-card {
+  background: transparent;
+}
+
+.cl-footer {
+  background: transparent;
+}
+
+.cl-socialButtons .cl-socialButtonsIconButton {
+  background: #1e293b;
+}
+
+
+.cl-formButtonPrimary {
+  background: #1e293b;
+}
+.cl-formButtonPrimary:hover {
+  background: #334155;
+}
+
+.cl-userButtonPopoverActionButtonIcon {
+  color: white;
+}
+.cl-userButtonPopoverMain{
+  background: #334155;
+}
+.cl-userButtonPopoverFooter{
+  display: none;
+}
+.cl-userPreviewTextContainer{
+  color: white;
+}
+.cl-userButtonPopoverActionButton:hover{
+  background: #cbd5e1;
+}
+
+.cl-logoBox {
+  height: 40px;
+}
+
+.cl-dividerLine {
+  background: #252a41;
+  height: 2px;
+}
+
+
+.cl-socialButtonsIconButton {
+  border: 3px solid #565761;
+}
+
+.cl-internal-wkkub3,
+.cl-userButtonPopoverActionButton,
+.cl-headerTitle {
+  color: white;
+}
+
+.cl-internal-1dauvpw {
+  display: none
+}
+
+.cl-headerSubtitle,
+.cl-footerActionText,
+.cl-formFieldLabel,
+.cl-dividerText {
+  color: #cbd5e1
+}
+.cl-footerActionLink{
+  color: white;
+  font-weight: 600
+}
+.cl-footerActionLink:hover{
+  color: white
+}
+
+
+/* =============================== */
+.scrollbar-hide::-webkit-scrollbar{
+display: none;
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  
+.scrollbar-hide{
+  scrollbar-width: none
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .flex-center {
+    @apply flex justify-center items-center;
   }
+
+  .flex-between {
+    @apply flex justify-between items-center;
+  }
+
+ 
 }
