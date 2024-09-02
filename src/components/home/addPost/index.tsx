@@ -2,8 +2,12 @@ import Card from "@/components/ui/Card";
 import Image from "next/image";
 import AddPostInput from "./AddPostInput";
 import PostOptionsItem from "./PostOptionsItem";
+import prisma from "@/lib/client";
+import { auth } from "@clerk/nextjs/server";
 
 const AddPost = () => {
+  const { userId } = auth();
+
   return (
     <Card>
       <div className="flex gap-4 justify-between text-sm">

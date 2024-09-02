@@ -4,7 +4,6 @@ import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import RootProvider from "@/providers/RootProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,10 +14,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { id: string };
 }>) {
   return (
     <ClerkProvider>
@@ -26,13 +23,13 @@ export default function RootLayout({
         <body
           className={cn(
             inter.className,
-            " bg-slate-900 max-w-screen-2xl mx-auto text-white px-4 md:px-8"
+            " bg-slate-900 max-w-[1440px] mx-auto text-white text-sm px-4 md:px-8"
           )}
         >
           <div className="w-full">
             <Header />
           </div>
-          <RootProvider params={params}>{children}</RootProvider>
+          {children}
         </body>
       </html>
     </ClerkProvider>

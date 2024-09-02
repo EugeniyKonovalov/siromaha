@@ -11,7 +11,7 @@ const Post = () => {
     <div className="flex flex-col gap-4">
       <PostHeader userAvatar="/pexels-photo-2.jpeg" userName="John Snow" />
       <div className="flex flex-col gap-4">
-        <div className="flex w-full min-h-96 relative">
+        <div className="flex w-full min-h-80  md:min-h-96 relative">
           <Image
             src={"/pexels-lopes-eduardo-4.jpg"}
             alt="post image"

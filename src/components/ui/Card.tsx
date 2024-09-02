@@ -1,8 +1,19 @@
-import React, { ReactNode } from "react";
+import { cn } from "@/lib/utils";
+import { ReactNode } from "react";
 
-const Card = ({ children }: { children: ReactNode }) => {
+const Card = ({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) => {
   return (
-    <div className="p-4 bg-slate-600 rounded-lg shadow-md">{children}</div>
+    <div
+      className={cn("w-full p-4 bg-slate-600 rounded-lg shadow-md", className)}
+    >
+      {children}
+    </div>
   );
 };
 

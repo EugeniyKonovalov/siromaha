@@ -1,11 +1,16 @@
 import Image from "next/image";
 
-const AddPostInput = () => {
+const AddPostInput = ({
+  action,
+}: {
+  action?: (formData: FormData) => void;
+}) => {
   return (
-    <div className="flex gap-4 flex-1">
+    <form action={action} className="flex gap-4 flex-1">
       <textarea
         placeholder="What`s on your mind"
-        className="bg-slate-200 rounded-lg w-full p-2"
+        name="desc"
+        className="bg-slate-200 text-slate-800 rounded-lg w-full p-2"
       ></textarea>
       <Image
         src={"/emoji.png"}
@@ -14,7 +19,8 @@ const AddPostInput = () => {
         height={20}
         className="w-5 h-5 cursor-pointer self-end"
       />
-    </div>
+      <button>send</button>
+    </form>
   );
 };
 

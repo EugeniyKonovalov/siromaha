@@ -1,4 +1,4 @@
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 const StoriesItem = ({ imgUrl, name }: { imgUrl: string; name: string }) => {
   return (

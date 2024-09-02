@@ -18,7 +18,7 @@ const FriendRequestsItem = ({
           height={40}
           className="w-10 h-10 rounded-full object-cover"
         />
-        <span className="font-semibold text-sm">{name}</span>
+        <span className="font-semibold text-sm line-clamp-1">{name}</span>
       </div>
       <div className="flex items-center gap-1">
         <IoCheckmarkCircle

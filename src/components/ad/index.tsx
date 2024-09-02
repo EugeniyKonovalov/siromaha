@@ -2,6 +2,7 @@ import Card from "@/components/ui/Card";
 import MoreBtn from "@/components/ui/MoreBtn";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import Button from "../ui/Button";
 
 const Ad = ({ size }: { size?: "sm" | "md" | "lg" }) => {
   return (
@@ -52,9 +53,9 @@ const Ad = ({ size }: { size?: "sm" | "md" | "lg" }) => {
             facere modi, expedita minima tenetur nemo quasi amet qui, aspernatur
             animi!
           </p>
-          <button className="bg-slate-700 p-2 text-xs rounded-lg">
+          <Button className="bg-slate-700 p-2 text-xs rounded-lg">
             Learn more
-          </button>
+          </Button>
         </div>
       </div>
     </Card>

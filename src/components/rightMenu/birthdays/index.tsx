@@ -1,3 +1,4 @@
+import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,7 +8,7 @@ const Birthdays = () => {
     <Card>
       <div className="flex flex-col gap-4">
         <div className="flex w-full items-center justify-between">
-          <span className="text-gray-300">Friend Requests</span>
+          <span className="text-gray-300">Birthdays</span>
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -21,9 +22,7 @@ const Birthdays = () => {
             <span className="font-semibold">Missandei</span>
           </div>
           <div className="flex gap-3 justify-end">
-            <button className="bg-sky-600 text-white text-xs px-2 py-1 rounded-md">
-              Celebrate
-            </button>
+            <Button>Celebrate</Button>
           </div>
         </div>
         <div className="flex p-4 bg-slate-700 rounded-lg items-center gap-4">
