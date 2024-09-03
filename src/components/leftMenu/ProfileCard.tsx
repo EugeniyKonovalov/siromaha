@@ -2,19 +2,39 @@ import Image from "next/image";
 import Card from "../ui/Card";
 import Button from "../ui/Button";
 import Link from "next/link";
+import prisma from "@/lib/client";
+import { auth } from "@clerk/nextjs/server";
 
-const ProfileCard = () => {
+const ProfileCard = async () => {
+  const { userId } = auth();
+  if (!userId) return null;
+
+  const user = await prisma.user.findFirst({
+    where: {
+      id: userId,
+    },
+    include: {
+      _count: {
+        select: {
+          followers: true,
+        },
+      },
+    },
+  });
+
+  if (!user) return null;
+
   return (
     <Card>
       <div className="relative h-20">
         <Image
-          src={"/pexels-alex-nguyen.jpg"}
+          src={user?.cover || "/noCover.jpg"}
           alt="background"
           fill
           className="rounded-md object-cover"
         />
         <Image
-          src={"/pexels-polina.jpg"}
+          src={user.avatar || "/noAvatar.png"}
           alt="avatar"
           width={192}
           height={192}
@@ -22,7 +42,11 @@ const ProfileCard = () => {
         />
       </div>
       <div className="flex flex-col gap-2 items-center">
-        <span className="font-semibold mt-6">Tinichka</span>
+        <span className="font-semibold mt-6">
+          {user?.name && user?.surename
+            ? `${user?.name} ${user?.surename}`
+            : user?.username}
+        </span>
         <div className="flex items-center gap-4">
           <div className="flex gap-1">
             <Image
@@ -47,7 +71,9 @@ const ProfileCard = () => {
               className="rounded-full object-cover w-3 h-3"
             />
           </div>
-          <span className="text-xs text-gray-200">500 Followers</span>
+          <span className="text-xs text-gray-200">
+            {user?._count?.followers} Followers
+          </span>
         </div>
         <Button className="rounded-md text-xs bg-sky-600 p-2">
           <Link href={"/profile/1"}>My Profile</Link>
