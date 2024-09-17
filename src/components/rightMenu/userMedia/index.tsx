@@ -1,9 +1,23 @@
-import Card from "@/components/ui/Card";
-import Image from "next/image";
+import Card from "@/components/shared/Card";
 import Link from "next/link";
 import UserMediaItem from "./UserMediaItem";
+import { UserTypes } from "@/types/user";
+import prisma from "@/lib/client";
 
-const UserMedia = ({ userId }: { userId: string | number }) => {
+const UserMedia = async ({ user }: { user: UserTypes }) => {
+  const postsWithMedia = await prisma.post.findMany({
+    where: {
+      userId: user?.id,
+      img: {
+        not: null,
+      },
+    },
+    take: 8,
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
   return (
     <Card className="flex flex-col gap-4">
       <div className="flex w-full items-center justify-between">
@@ -13,14 +27,13 @@ const UserMedia = ({ userId }: { userId: string | number }) => {
         </Link>
       </div>
       <div className="flex gap-4 justify-between flex-wrap">
-        <UserMediaItem imgUrl="/pexels-erikmdr-prcfi-5.jpg" />
-        <UserMediaItem imgUrl="/pexels-kammeran-gonzalez-keola.jpg" />
-        <UserMediaItem imgUrl="/pexels-nana-3.jpg" />
-        <UserMediaItem imgUrl="/pexels-kammeran-gonzalez-keola.jpg" />
-        <UserMediaItem imgUrl="/pexels-helloaesthe.jpg" />
-        <UserMediaItem imgUrl="/pexels-mrvyyl-23.jpg" />
-        <UserMediaItem imgUrl="/pexels-kammeran-gonzalez-keola.jpg" />
-        <UserMediaItem imgUrl="/pexels-erikmdr-prcfi-5.jpg" />
+        {postsWithMedia?.length ? (
+          postsWithMedia?.map((post) => (
+            <UserMediaItem key={post?.id} imgUrl={post?.img!} />
+          ))
+        ) : (
+          <span className="w-full text-center">No Media found!</span>
+        )}
       </div>
     </Card>
   );

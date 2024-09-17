@@ -1,8 +1,26 @@
-import Card from "@/components/ui/Card";
+import Card from "@/components/shared/Card";
 import Link from "next/link";
 import FriendRequestsItem from "./FriendRequestsItem";
+import { auth } from "@clerk/nextjs/server";
+import prisma from "@/lib/client";
+import FriendRequestsList from "./FriendRequestsList";
 
-const FriendRequests = () => {
+const FriendRequests = async () => {
+  const { userId } = auth();
+
+  if (!userId) return;
+
+  const requests = await prisma.follow.findMany({
+    where: {
+      receiverId: userId,
+    },
+    include: {
+      sender: true,
+    },
+  });
+
+  if (!requests?.length) return;
+
   return (
     <Card className="flex flex-col gap-4">
       <div className="flex w-full items-center justify-between">
@@ -11,18 +29,7 @@ const FriendRequests = () => {
           See all
         </Link>
       </div>
-      <FriendRequestsItem
-        imageUrl="/pexels-thinoshi-liyanage.jpg"
-        name="Daenerys Targaryen"
-      />
-      <FriendRequestsItem
-        imageUrl="/pexels-thinoshi-liyanage.jpg"
-        name="Daenerys Targaryen"
-      />
-      <FriendRequestsItem
-        imageUrl="/pexels-thinoshi-liyanage.jpg"
-        name="Daenerys Targaryen"
-      />
+      <FriendRequestsList requests={requests} />
     </Card>
   );
 };

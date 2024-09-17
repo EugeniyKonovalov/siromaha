@@ -1,4 +1,4 @@
-import MoreBtn from "@/components/ui/MoreBtn";
+import MoreBtn from "@/components/shared/MoreBtn";
 import Image from "next/image";
 import { AiOutlineLike } from "react-icons/ai";
 

@@ -1,4 +1,4 @@
-import Card from "@/components/ui/Card";
+import Card from "@/components/shared/Card";
 import MenuListItem from "./MenuListItem";
 import { menuList } from "@/lib/menuList";
 import { Fragment } from "react";

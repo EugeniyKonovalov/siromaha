@@ -43,7 +43,6 @@ export async function POST(req: Request) {
     });
   }
 
-  const { id } = evt.data;
   const eventType = evt.type;
 
   if (eventType === "user.created") {
@@ -52,6 +51,8 @@ export async function POST(req: Request) {
         data: {
           id: evt.data.id,
           username: JSON.parse(body)?.data.username,
+          name: JSON.parse(body)?.data?.first_name,
+          surename: JSON.parse(body)?.data?.last_name,
           avatar: JSON.parse(body)?.data.image_url || "/noAvatar.png",
           cover: "/noCover.jpg",
         },

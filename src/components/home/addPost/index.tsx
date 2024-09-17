@@ -1,4 +1,4 @@
-import Card from "@/components/ui/Card";
+import Card from "@/components/shared/Card";
 import Image from "next/image";
 import AddPostInput from "./AddPostInput";
 import PostOptionsItem from "./PostOptionsItem";

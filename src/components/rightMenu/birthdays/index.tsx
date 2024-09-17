@@ -1,5 +1,5 @@
-import Button from "@/components/ui/Button";
-import Card from "@/components/ui/Card";
+import Button from "@/components/shared/Button";
+import Card from "@/components/shared/Card";
 import Image from "next/image";
 import Link from "next/link";
 

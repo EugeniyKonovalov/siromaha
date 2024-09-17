@@ -1,8 +1,8 @@
-import Card from "@/components/ui/Card";
-import MoreBtn from "@/components/ui/MoreBtn";
+import Card from "@/components/shared/Card";
+import MoreBtn from "@/components/shared/MoreBtn";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import Button from "../ui/Button";
+import Button from "../shared/Button";
 
 const Ad = ({ size }: { size?: "sm" | "md" | "lg" }) => {
   return (

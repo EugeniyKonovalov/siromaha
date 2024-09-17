@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
+    serverActions: true,
     reactCompiler: true,
     ppr: "incremental",
   },
@@ -9,6 +10,10 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "img.clerk.com",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
       },
     ],
   },

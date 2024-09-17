@@ -19,7 +19,6 @@ const AddPostInput = ({
         height={20}
         className="w-5 h-5 cursor-pointer self-end"
       />
-      <button>send</button>
     </form>
   );
 };

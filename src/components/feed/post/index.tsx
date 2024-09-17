@@ -1,44 +1,34 @@
+import { PostType } from "@/types/post";
 import Image from "next/image";
-import { AiOutlineLike } from "react-icons/ai";
-import { BiCommentDetail } from "react-icons/bi";
-import { PiShareFat } from "react-icons/pi";
 import Comments from "./comments";
-import PostFooterItem from "./PostFooterItem";
 import PostHeader from "./PostHeader";
+import PostInteraction from "./PostInteraction";
 
-const Post = () => {
+const Post = ({ post }: { post: PostType }) => {
   return (
     <div className="flex flex-col gap-4">
-      <PostHeader userAvatar="/pexels-photo-2.jpeg" userName="John Snow" />
+      <PostHeader
+        userAvatar={post?.user.avatar || "noAvatar.png"}
+        username={
+          post?.user?.name && post?.user?.surename
+            ? `${post?.user?.name} ${post?.user?.surename}`
+            : post?.user?.username
+        }
+      />
       <div className="flex flex-col gap-4">
-        <div className="flex w-full min-h-80  md:min-h-96 relative">
-          <Image
-            src={"/pexels-lopes-eduardo-4.jpg"}
-            alt="post image"
-            fill
-            className="object-cover rounded-md"
-          />
-        </div>
-        <p className="text-md">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi
-          sequi nihil voluptates aliquam, in ducimus enim ipsa! Quis odit quam
-          optio excepturi? Voluptate eum, ab culpa mollitia earum atque quos?
-        </p>
-      </div>
-      <div className="flex items-center justify-between text-sm my-4">
-        <div className="flex justify-between w-full gap-8">
-          <div className="flex gap-4">
-            <PostFooterItem Icon={AiOutlineLike} count={123} title="Likes" />
-            <PostFooterItem
-              Icon={BiCommentDetail}
-              count={23}
-              title="Comments"
+        {post?.img ? (
+          <div className="flex w-full min-h-80  md:min-h-96 relative">
+            <Image
+              src={post.img}
+              alt="post image"
+              fill
+              className="object-cover rounded-md"
             />
           </div>
-          <PostFooterItem Icon={PiShareFat} count={234} title="Shares" />
-        </div>
-        <div className="flex"> </div>
+        ) : null}
+        <p className="text-md">{post?.desc}</p>
       </div>
+      <PostInteraction post={post} />
       <Comments />
     </div>
   );

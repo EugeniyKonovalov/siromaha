@@ -43,7 +43,7 @@ const MobileMenu = () => {
 
       <div
         className={cn(
-          "absolute left-0 top-24 w-full h-[calc(100dvh-96px)] bg-slate-900 flex flex-col items-center justify-center gap-8 font-medium text-xl z-10 scale-0 ease-in-out duration-700 origin-top-left opacity-0",
+          "absolute left-0 top-24 w-full h-[calc(100dvh-96px)] bg-slate-900 flex flex-col items-center justify-center gap-8 font-medium text-xl z-50 scale-0 ease-in-out duration-700 origin-top-left opacity-0",
           { "scale-100": isOpen },
           { "opacity-100": isOpen }
         )}

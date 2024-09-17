@@ -1,16 +1,22 @@
+import { UserTypes } from "@/types/user";
 import Ad from "../ad";
 import Birthdays from "./birthdays";
 import FriendRequests from "./friendRequests";
 import UserInfo from "./userInfo";
 import UserMedia from "./userMedia";
+import { Suspense } from "react";
 
-const RightMenu = ({ userId }: { userId?: string | number }) => {
+const RightMenu = ({ user }: { user?: UserTypes }) => {
   return (
     <div className="flex flex-col gap-6">
-      {userId ? (
+      {user ? (
         <>
-          <UserInfo userId={userId} />
-          <UserMedia userId={userId} />
+          <Suspense fallback={"loading..."}>
+            <UserInfo user={user} />
+          </Suspense>
+          <Suspense fallback={"loading..."}>
+            <UserMedia user={user} />
+          </Suspense>
         </>
       ) : null}
       <FriendRequests />
