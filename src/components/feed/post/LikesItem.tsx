@@ -10,7 +10,7 @@ import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 const LikesItem = ({ post }: { post: PostType }) => {
   const { isLoaded, userId } = useAuth();
   const likedUserIds = post.likes?.map((user) => user?.userId);
-  console.log("likedUserIds: ", likedUserIds);
+
   const [likesState, setlikesState] = useState({
     likesCount: likedUserIds?.length,
     isLiked: userId ? likedUserIds?.includes(userId) : false,

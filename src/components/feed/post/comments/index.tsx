@@ -1,13 +1,22 @@
-import AddComment from "./AddComment";
-import CommentItem from "./CommentItem";
+import prisma from "@/lib/client";
+import CommentList from "./CommentList";
 
-const Comments = () => {
+const Comments = async ({ postId }: { postId: number }) => {
+  const comments = await prisma.comment.findMany({
+    where: {
+      postId,
+    },
+    include: {
+      user: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
   return (
     <div className="flex flex-col gap-10">
-      <AddComment />
-      <div className="flex flex-col gap-8">
-        <CommentItem />
-      </div>
+      <CommentList comments={comments} postId={postId} />
     </div>
   );
 };

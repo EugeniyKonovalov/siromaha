@@ -1,12 +1,18 @@
 import MoreBtn from "@/components/shared/MoreBtn";
+import { CommentType } from "@/types/post";
 import Image from "next/image";
 import { AiOutlineLike } from "react-icons/ai";
 
-const CommentItem = () => {
+const CommentItem = ({ comment }: { comment: CommentType }) => {
+  const commentUserName =
+    comment?.user?.name && comment?.user?.surename
+      ? `${comment?.user?.name} ${comment?.user?.surename}`
+      : comment?.user?.username;
+
   return (
     <div className="flex items-start w-full gap-4">
       <Image
-        src={"/pexels-huy-nguy-n-7.jpg"}
+        src={comment?.user?.avatar || "/noAvatar.png"}
         alt="User Avatar"
         width={40}
         height={40}
@@ -14,13 +20,8 @@ const CommentItem = () => {
       />
 
       <div className="flex w-full flex-col gap-3">
-        <span className="font-medium">Eddard Stark</span>
-        <p className="text-sm">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia,
-          explicabo! Fugiat illo possimus, rem mollitia nemo quia ratione soluta
-          asperiores commodi dicta quidem, hic adipisci corporis cum officiis,
-          dolore maxime?
-        </p>
+        <span className="font-medium">{commentUserName}</span>
+        <p className="text-sm">{comment?.desc}</p>
         <div className="flex items-center gap-4 text-xs">
           <div className="flex items-center gap-2 ">
             <AiOutlineLike size={16} className="cursor-pointer text-sky-500" />

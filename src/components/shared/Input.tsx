@@ -1,9 +1,9 @@
 import { cn } from "@/lib/utils";
 import { InputProps } from "@/types/shared";
 
-const Input = ({ input, label, className }: InputProps) => {
+const Input = ({ input, label, className, mainClassName }: InputProps) => {
   return (
-    <div className="flex flex-col gap-y-2">
+    <div className={cn("flex flex-col gap-y-2", mainClassName)}>
       {label ? (
         <label htmlFor={input.id} className="text-xs text-gray-300">
           {label}

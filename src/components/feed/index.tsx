@@ -54,15 +54,13 @@ const Feed = async ({ username }: { username?: string }) => {
   }
 
   return (
-    <Card>
-      <div className="flex flex-col gap-12">
-        {posts?.length ? (
-          posts?.map((post) => <Post key={post?.id} post={post} />)
-        ) : (
-          <p className="text-center">No post found!</p>
-        )}
-      </div>
-    </Card>
+    <div className="flex flex-col gap-6">
+      {posts?.length ? (
+        posts?.map((post) => <Post key={post?.id} post={post} />)
+      ) : (
+        <p className="text-center">No post found!</p>
+      )}
+    </div>
   );
 };
 

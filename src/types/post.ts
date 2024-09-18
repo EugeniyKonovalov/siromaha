@@ -1,4 +1,4 @@
-import { Post, User } from "@prisma/client";
+import { Comment, Post, User } from "@prisma/client";
 
 export type PostType = Post & {
   user: User;
@@ -9,3 +9,5 @@ export type PostType = Post & {
     comments: number;
   };
 };
+
+export type CommentType = Comment & { user: User };
