@@ -9,6 +9,12 @@ const CommentItem = ({ comment }: { comment: CommentType }) => {
       ? `${comment?.user?.name} ${comment?.user?.surename}`
       : comment?.user?.username;
 
+  const commentDate = `${new Date(
+    comment?.createdAt
+  ).toLocaleDateString()} ${new Date(comment?.createdAt).getHours()}:${new Date(
+    comment?.createdAt
+  ).getMinutes()}`;
+
   return (
     <div className="flex items-start w-full gap-4">
       <Image
@@ -22,13 +28,19 @@ const CommentItem = ({ comment }: { comment: CommentType }) => {
       <div className="flex w-full flex-col gap-3">
         <span className="font-medium">{commentUserName}</span>
         <p className="text-sm">{comment?.desc}</p>
-        <div className="flex items-center gap-4 text-xs">
-          <div className="flex items-center gap-2 ">
-            <AiOutlineLike size={16} className="cursor-pointer text-sky-500" />
-            <span className="text-gray-500">|</span>
-            <span className="text-gray-400">123 Likes</span>
+        <div className="flex flex-col gap-2 sm:gap-0 sm:flex-row sm:items-center justify-between ">
+          <div className="flex items-center gap-4 text-xs">
+            <div className="flex items-center gap-2 ">
+              <AiOutlineLike
+                size={16}
+                className="cursor-pointer text-sky-500"
+              />
+              <span className="text-gray-500">|</span>
+              <span className="text-gray-400">123 Likes</span>
+            </div>
+            <span className="cursor-pointer hover:underline">Reply</span>
           </div>
-          <span className="cursor-pointer hover:underline">Reply</span>
+          <span className="text-xs text-gray-400">{commentDate}</span>
         </div>
       </div>
       <MoreBtn size={20} className="w-4" />

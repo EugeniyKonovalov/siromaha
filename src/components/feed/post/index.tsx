@@ -4,6 +4,7 @@ import Comments from "./comments";
 import PostHeader from "./PostHeader";
 import PostInteraction from "./PostInteraction";
 import Card from "@/components/shared/Card";
+import { Suspense } from "react";
 
 const Post = async ({ post }: { post: PostType }) => {
   return (
@@ -15,6 +16,8 @@ const Post = async ({ post }: { post: PostType }) => {
             ? `${post?.user?.name} ${post?.user?.surename}`
             : post?.user?.username
         }
+        postId={post?.id}
+        postUserId={post?.user?.id}
       />
       <div className="flex flex-col gap-4 mt-4">
         {post?.img ? (
@@ -29,8 +32,12 @@ const Post = async ({ post }: { post: PostType }) => {
         ) : null}
         <p className="text-md">{post?.desc}</p>
       </div>
-      <PostInteraction post={post} />
-      <Comments postId={post?.id} />
+      <Suspense fallback={"Loading..."}>
+        <PostInteraction post={post} />
+      </Suspense>
+      <Suspense fallback={"Loading..."}>
+        <Comments postId={post?.id} />
+      </Suspense>
     </Card>
   );
 };

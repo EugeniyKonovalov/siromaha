@@ -26,8 +26,6 @@ const UserInfoCardInteraction = ({
   const [optimisticState, switchOptimisticState] = useOptimistic(
     userState,
     (state, value: "follow" | "block") => {
-      console.log("value: ", value);
-
       return value === "follow"
         ? {
             ...state,

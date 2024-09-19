@@ -1,8 +1,8 @@
 import LeftMenu from "../leftMenu";
 import RightMenu from "../rightMenu";
-import AddPost from "./addPost";
+import AddPost from "../addPost";
 import Feed from "../feed";
-import Stories from "./stories";
+import Stories from "../stories";
 
 const Home = () => {
   return (

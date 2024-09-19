@@ -1,16 +1,21 @@
-import MoreBtn from "@/components/shared/MoreBtn";
 import Image from "next/image";
 import Link from "next/link";
+import PostActionMenu from "./PostActionMenu";
+import { auth } from "@clerk/nextjs/server";
 
 const PostHeader = ({
   username,
   userAvatar,
   postId,
+  postUserId,
 }: {
   userAvatar: string;
   username: string;
-  postId?: string | number;
+  postId: number;
+  postUserId: string;
 }) => {
+  const { userId } = auth();
+
   return (
     <div className="flex items-center justify-between">
       <Link href={`/profile/${username}`}>
@@ -25,7 +30,7 @@ const PostHeader = ({
           <span className="font-medium">{username}</span>
         </div>
       </Link>
-      <MoreBtn size={20} />
+      {userId === postUserId ? <PostActionMenu postId={postId} /> : null}
     </div>
   );
 };

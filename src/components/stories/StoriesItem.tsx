@@ -8,7 +8,7 @@ const StoriesItem = ({ imgUrl, name }: { imgUrl: string; name: string }) => {
         alt={`stories image by ${name}`}
         width={80}
         height={80}
-        className="w-20 h-20 rounded-full ring-1"
+        className="w-20 h-20 rounded-full object-cover ring-1"
       />
       <span className="font-medium">{name}</span>
     </div>

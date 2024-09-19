@@ -3,19 +3,16 @@
 import Input from "@/components/shared/Input";
 import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
-import { useState } from "react";
 
 const AddComment = ({
   addCommentAction,
 }: {
-  addCommentAction: (value: string) => Promise<void>;
+  addCommentAction: (formData: FormData) => Promise<void>;
 }) => {
-  const [newComment, setNewComment] = useState<string>("");
   const { user } = useUser();
 
-  const addComment = () => {
-    addCommentAction(newComment);
-    setNewComment("");
+  const addComment = (formData: FormData) => {
+    addCommentAction(formData);
   };
 
   return (
@@ -35,8 +32,7 @@ const AddComment = ({
           input={{
             type: "text",
             placeholder: "Write a comment...",
-            onChange: (e) => setNewComment(e.target.value),
-            value: newComment || "",
+            name: "comment",
           }}
           className="bg-transparent outline-none w-full ring-0"
           mainClassName="w-full"

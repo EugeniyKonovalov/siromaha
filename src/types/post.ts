@@ -10,4 +10,9 @@ export type PostType = Post & {
   };
 };
 
-export type CommentType = Comment & { user: User };
+export type CommentType = Comment & {
+  user: Omit<
+    User,
+    "cover" | "city" | "description" | "website" | "work" | "school"
+  >;
+};

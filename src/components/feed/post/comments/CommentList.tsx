@@ -22,7 +22,8 @@ const CommentList = ({
     (state, value: CommentType) => [value, ...state]
   );
 
-  const addCommentAction = async (desc: string) => {
+  const addCommentAction = async (formData: FormData) => {
+    const desc = formData.get("comment") as string;
     if (!user || !desc) return;
     addOptimistcComment({
       id: Math.random(),
@@ -35,14 +36,8 @@ const CommentList = ({
         id: user?.id,
         username: "Sending, please wait...",
         avatar: user?.imageUrl,
-        cover: "",
-        city: "",
-        description: "",
         name: "",
         surename: "",
-        website: "",
-        work: "",
-        school: "",
         createdAt: new Date(),
       },
     });

@@ -10,10 +10,11 @@ import Image from "next/image";
 import { useActionState, useState } from "react";
 import { MdClose } from "react-icons/md";
 import UpdateBtn from "./UpdateBtn";
-import { updateProfile } from "@/lib/actions/user.actions";
+import { updateProfile } from "@/lib/actions/user";
+import useDisclosure from "@/hooks/useDisclosure";
 
 const UpdateUser = ({ user }: { user: User }) => {
-  const [isOpen, setIsOpen] = useState<Boolean>(false);
+  const { isOpen, onClose, onOpen } = useDisclosure();
   const [cover, setCover] = useState<any>();
 
   const [state, formAction] = useActionState(updateProfile, {
@@ -22,11 +23,11 @@ const UpdateUser = ({ user }: { user: User }) => {
   });
 
   const onOpenHandler = (): void => {
-    setIsOpen(true);
+    onOpen();
   };
 
   const onCloseHandler = (): void => {
-    setIsOpen(false);
+    onClose();
   };
 
   return (
